@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- nanmespace:命名空间。 作用就是对sql进行分类话管理，理解Sal分离
+
+注意：使用mapper代理方式，namespace有特殊重要的作用
+-->
+<mapper namespace="cn.test.common.dao.UserRealmDao">
+	
+
+	<select id="selectFromUser" parameterType="cn.test.po.User" resultType="cn.test.po.User">
+		select * from user
+		where 1 = 1 
+		<if test="name != null"> and name = #{name}</if>
+	</select>
+	
+	<select id="selectFromUserById" parameterType="cn.test.po.User" resultType="cn.test.po.User">
+		select * from user
+		where 1 = 1 
+		<if test="id != null"> and id = #{id}</if>
+	</select>
+	
+	<select id="slectUserRole" parameterType="cn.test.po.User" resultType="string">		
+		select r.name from role r 
+		inner join user_role ur on r.id = ur.rid
+		inner join user u on ur.uid = u.id and u.id = #{id}	
+	</select>
+	
+	<select id="slectRolePermission" parameterType="cn.test.po.User" resultType="string">		
+		select r.name from permission p 
+		inner join role_permission rp on p.id = rp.pid
+		inner join role r on rp.rid = r.id
+		inner join user_role ur on r.id = ur.rid
+		inner join user u on ur.uid = u.id and u.id = #{id}	
+	</select>
+	
+    
+</mapper>
