@@ -14,6 +14,7 @@
 		<shiro.version>1.4.0</shiro.version>
 		<slt4j.version>1.8.0-alpha2</slt4j.version>
 		<jersey.version>1.19.4</jersey.version>
+		<freemarker.version>2.3.23</freemarker.version>
 	</properties>
 
 
@@ -368,6 +369,12 @@
 			</exclusions>
 		</dependency>
 
+		<!-- freemarker -->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>${freemarker.version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>
