@@ -69,7 +69,7 @@
 		<property name="exposeRequestAttributes" value="true" />
 		<property name="exposeSessionAttributes" value="true" />
 		<property name="exposeSpringMacroHelpers" value="true" />
-		<property name="order" value="1" />
+		<property name="order" value="0" />
 	</bean>
 
 	<bean id="multipartResolver"
