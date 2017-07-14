@@ -1,4 +1,4 @@
-package cn.test.ws;
+ï»¿package cn.test.ws;
 
 
 import java.io.IOException;
@@ -31,45 +31,45 @@ public class MarcoHandler extends TextWebSocketHandler{
 	
 
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		super.afterConnectionEstablished(session);
-		System.out.println("id:"+session.getId()+"½¨Á¢Á¬½Ó£º"+new Date()+",¼ÓÈëmap");
+		System.out.println("id:"+session.getId()+"å»ºç«‹è¿æ¥ï¼š"+new Date()+",åŠ å…¥map");
 		String _id = session.getId();
 		if(userSessionMap.get(session) == null){
-			userSessionMap.put(session,new User(_id, "ÓÃ»§"+_id));
+			userSessionMap.put(session,new User(_id, "ç”¨æˆ·"+_id));
 		}
 		session.sendMessage(new TextMessage(ms.buildMessage("link", _id)));
 		 ms.setUser(userSessionMap);
 	        String message = ms.buildMessage("message",
-	            String.format("[%s]½øÈëÁËÁÄÌìÊÒ", "ÓÃ»§"+_id));
+	            String.format("[%s]è¿›å…¥äº†èŠå¤©å®¤", "ç”¨æˆ·"+_id));
 	        ms.publish(message);
 	        ms.publish(ms.buildMessage("users", ms.getNames()));
 	}
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		super.afterConnectionClosed(session, status);
-		System.out.println("id:"+session.getId()+"¹Ø±ÕÁ¬½Ó£º"+new Date()+",Çå³ımap");
+		System.out.println("id:"+session.getId()+"å…³é—­è¿æ¥ï¼š"+new Date()+",æ¸…é™¤map");
         User user = userSessionMap.remove(session);
         String message = ms.buildMessage("message",
-            String.format("[%s]Àë¿ªÁËÁÄÌìÊÒ", user.getName()));
+            String.format("[%s]ç¦»å¼€äº†èŠå¤©å®¤", user.getName()));
         ms.publish(message);		
 	}
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+		// TODO è‡ªåŠ¨ç”Ÿæˆçš„æ–¹æ³•å­˜æ ¹
 		super.handleTextMessage(session, message);
 		MessageDuf m = new MessageDuf();
 		m.setId(session.getId());
 		m.setInfo(message.getPayload());
-		System.out.println("ÊÕµ½£º"+session.getId()+"·¢ËÍµÄĞÅÏ¢£º"+message.getPayload());
-//		session.sendMessage(new TextMessage("À´×Å·şÎñÆ÷£º"+message.getPayload()));
+		System.out.println("æ”¶åˆ°ï¼š"+session.getId()+"å‘é€çš„ä¿¡æ¯ï¼š"+message.getPayload());
+//		session.sendMessage(new TextMessage("æ¥ç€æœåŠ¡å™¨ï¼š"+message.getPayload()));
 		//session.sendMessage(new TextMessage(m.toString()));
 		//sendAll(m);
         User user = userSessionMap.get(session);
-        String messages = String.format("[%s]Ëµ£º%s", user.getName(), message.getPayload());
+        String messages = String.format("[%s]è¯´ï¼š%s", user.getName(), message.getPayload());
         messages = ms.buildMessage("message", messages);
         ms.publish(messages);
 		
@@ -78,7 +78,7 @@ public class MarcoHandler extends TextWebSocketHandler{
 	public void sendAll(Object o) {
 //		 Iterator<Entry<String, WebSocketSession>> it = userSessionMap
 //	                .entrySet().iterator();
-//	        // ¶àÏß³ÌÈº·¢
+//	        // å¤šçº¿ç¨‹ç¾¤å‘
 //	        while (it.hasNext()) {
 //	            final Entry<String, WebSocketSession> entry = it.next();
 //	            if (entry.getValue().isOpen()) {
@@ -107,7 +107,7 @@ public class MarcoHandler extends TextWebSocketHandler{
 						try {
 							e.getValue().sendMessage(new TextMessage(m));
 						} catch (IOException e) {
-							// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+							// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 							e.printStackTrace();
 						}
 					}
