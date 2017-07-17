@@ -34,6 +34,7 @@
 		<script type="text/javascript" src="../static/common/page.js" ></script>
 		<!--model-->
 		<script type="text/javascript" src="../static/model/role.js" ></script>
+		<script type="text/javascript" src="../static/model/menu.js" ></script>
 	</head>
 
 	<body>
