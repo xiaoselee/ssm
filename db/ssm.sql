@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-07-03 16:28:30
+Date: 2017-07-17 18:08:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -70,7 +70,7 @@ INSERT INTO `menu` VALUES ('2', '系统管理', null, '0', '1', 'lnr-alarm', nul
 INSERT INTO `menu` VALUES ('3', '测试1级菜单1-1', null, '1', '1', null, null, null, null, null, null, null);
 INSERT INTO `menu` VALUES ('4', '角色管理', null, '2', '1', 'lnr-alarm', '../view/role/role.html', null, null, null, null, null);
 INSERT INTO `menu` VALUES ('6', '权限管理', null, '2', '5', 'lnr-alarm', null, '0', null, null, null, null);
-INSERT INTO `menu` VALUES ('7', '菜单管理', null, '2', '10', 'lnr-alarm', null, '0', '2017-06-02 09:17:47', '2017-06-02 09:17:52', null, null);
+INSERT INTO `menu` VALUES ('7', '菜单管理', null, '2', '10', 'lnr-alarm', '../view/menu/list.html', '0', '2017-06-02 09:17:47', '2017-06-02 09:17:52', null, null);
 
 -- ----------------------------
 -- Table structure for permission
