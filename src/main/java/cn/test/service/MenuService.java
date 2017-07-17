@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.test.common.po.DefaultRequest;
+import cn.test.common.po.PageHandler;
 import cn.test.dao.IMenuDao;
 import cn.test.po.Menu;
 
@@ -46,6 +48,14 @@ public class MenuService {
 		return sunList;
 	}
 	
-	
+	public DefaultRequest<Menu> getMenuList(PageHandler<Menu> page) {
+		DefaultRequest<Menu> d = new DefaultRequest<>();
+		ArrayList<Menu> l = menuDao.selectFromMenuByPageInfo();
+		if(l != null && l.size() > 0){
+			d.setRows(l);
+			d.setTotal(100);
+		}
+		return d;		
+	}
 	
 }

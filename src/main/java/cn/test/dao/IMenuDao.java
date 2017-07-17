@@ -1,5 +1,6 @@
 package cn.test.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.test.po.Menu;
@@ -7,4 +8,5 @@ import cn.test.po.Menu;
 public interface IMenuDao {
 
 	List<Menu> selectFromMenu();
+	ArrayList<Menu> selectFromMenuByPageInfo();
 }

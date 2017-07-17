@@ -10,5 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectFromMenu" resultType="cn.test.po.Menu">
 		select * from menu
 	</select>
-
+	
+	
+	<select id="selectFromMenuByPageInfo" resultType="cn.test.po.Menu">
+		select * from menu
+	</select>
 </mapper>
