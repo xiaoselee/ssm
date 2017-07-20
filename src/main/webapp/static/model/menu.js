@@ -1,23 +1,16 @@
 function menu() {
-
+	this.addUrl = "../menu/add";
+	this.editUrl = "../menu/update";
+	this.listUrl =  "../menu/list";
 }
 menu.prototype = new SimplePage();
 menu.prototype.constructor = "menu";
 
-menu.prototype.lanch = function() {
-	this.addUrl = "../menu/add";
-	this.editUrl = "../menu/update";
+/*menu.prototype.lanch = function() {
 	this.panel = $('#contant');
 	this.table = this.panel.find('#tt');
 	this.init();
-};
-
-menu.prototype.setTableInfo = function() {
-	var _this = this;
-	return {
-		url: "../menu/list"
-	}
-}
+};*/
 
 menu.prototype.setTableColumnsarray = function() {
 	var a = [];
@@ -46,14 +39,23 @@ menu.prototype.setTableColumnsarray = function() {
 			field: 'status',
 			title: '是否启用',
 			width: 100,
-			align: 'left'
+			align: 'left',
+			formatter: function(value,row,index){
+				if (value == '0'){
+					return "是";
+				} else {
+					return "否";
+				}
+			}
 		}]
 	];
 	return a;
 }
 
 menu.prototype.beforOpenAddDialog = function() {
-	var dialog = this.addDialog;
-	dialog.find("form").form('clear');
-	dialog.find('input[name=remarks]').textbox();
+	alert('open add')
+}
+
+menu.prototype.beforOpenEditDialog = function(row) {
+	
 }

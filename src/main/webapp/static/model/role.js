@@ -1,23 +1,16 @@
 function role() {
-
+	this.addUrl = "../role/add";
+	this.editUrl = "../role/update";
+	this.listUrl = "../role/list";
 }
 role.prototype = new SimplePage();
 role.prototype.constructor = "role";
 
-role.prototype.lanch = function() {
-	this.addUrl = "../role/add";
-	this.editUrl = "../role/update";
+/*role.prototype.lanch = function() {
 	this.panel = $('#contant');
 	this.table = this.panel.find('#tt');
 	this.init();
-};
-
-role.prototype.setTableInfo = function() {
-	var _this = this;
-	return {
-		url: "../role/list"
-	}
-}
+};*/
 
 role.prototype.setTableColumnsarray = function() {
 	var a = [];

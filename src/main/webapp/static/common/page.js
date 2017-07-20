@@ -1,13 +1,13 @@
 function SimplePage() {
-
+	this.addUrl = "";
+	this.editUrl = "";
+	this.listUrl = "";
 }
 
 SimplePage.prototype = new Object();
-SimplePage.prototype.constructor = "page";
+SimplePage.prototype.constructor = "SimplePage";
 
 SimplePage.prototype.lanch = function() {
-	this.addUrl = "";
-	this.editUrl = "";
 	this.panel = $('#contant');
 	this.table = this.panel.find('#tt');
 	this.init();
@@ -38,11 +38,11 @@ SimplePage.prototype._setTableInfo = function() {
 	var _this = this;
 	this.tableInfo = {
 		height: 340,
-		url: 'url',
+		url: _this.listUrl,
 		method: 'GET',
 		striped: true,
 		fitColumns: true,
-		singleSelect: false,
+		singleSelect: true,
 		rownumbers: true,
 		pagination: false,
 		nowrap: false,
@@ -93,13 +93,19 @@ SimplePage.prototype.setTableColumnsarray = function() {
 SimplePage.prototype.initDialog = function() {
 	var _this = this;
 	var addDialog = new AddDialog();
-	addDialog.init("#add", this.addUrl);
+	var addPanel = this.panel.find('#add');
+	addDialog.init(addPanel, this.addUrl);
 	this.addDialog = addDialog.getDialog();
+	
+	var editDialog = new EditDialog();
+	var editPanel = this.panel.find('#edit');
+	editDialog.init(editPanel, this.editUrl);
+	this.editDialog = editDialog.getDialog();
 }
 
 SimplePage.prototype.addButtonHandler = function(_this) {
 	var _f = function() {
-		_this.beforOpenAddDialog();
+		_this._beforOpenAddDialog();
 		_this.addDialog.dialog("open");
 	}
 	return _f;
@@ -107,20 +113,38 @@ SimplePage.prototype.addButtonHandler = function(_this) {
 
 SimplePage.prototype.editButtonHandler = function(_this) {
 	var _f = function() {
-		alert("editButtonHandler");
+	var row = _this.table.datagrid('getSelected');
+	console.log(row);
+	if(row == null || row == 'null') return;
+		_this._beforOpenEditDialog(row);
+		_this.editDialog.dialog("open");
 	}
 	return _f;
 };
 
-SimplePage.prototype.beforOpenAddDialog = function() {
+SimplePage.prototype._beforOpenAddDialog = function() {
 	var dialog = this.addDialog;
 	dialog.find("form").form('clear');
+	this.beforOpenAddDialog();
+}
+
+SimplePage.prototype.beforOpenAddDialog = function() {
+
+}
+
+SimplePage.prototype._beforOpenEditDialog = function(row) {
+	this.editDialog.find('form').form('load',row);
+	this.beforOpenEditDialog(row);
+}
+
+SimplePage.prototype.beforOpenEditDialog = function(row) {
 }
 
 function pageDialog() {
 	this.dialog = undefined;
 	this.select = undefined;
 	this.submitUrl = undefined;
+	this.titile = "信息";
 };
 
 pageDialog.prototype = new Object();
@@ -129,16 +153,16 @@ pageDialog.prototype.constructor = "pageDialog";
 pageDialog.prototype.init = function(select, submitUrl) {
 	this._init();
 	this.addDialogButton();
-	this.extendInfo();
+	this._extendInfo();
 	this.select = select;
 	this.submitUrl = submitUrl;
-	this.dialog = $(this.select).dialog(this.dialogInfo);
+	this.dialog = this.select.dialog(this.dialogInfo);
 };
 
 pageDialog.prototype._init = function() {
 	var _this = this;
 	this.dialogInfo = {
-		title: 'My Dialog',
+		title: _this.title?_this.title:'My Dialog',
 		width: 600,
 		height: 400,
 		closed: true,
@@ -148,9 +172,13 @@ pageDialog.prototype._init = function() {
 	}
 };
 
-pageDialog.prototype.extendInfo = function(obj) {
+pageDialog.prototype._extendInfo = function() {
 	var _this = this;
-	$.extend(_this.dialogInfo, obj);
+	$.extend(_this.dialogInfo, _this.extendInfo);
+};
+
+pageDialog.prototype.extendInfo = function() {
+	return {};
 };
 
 pageDialog.prototype.addDialogButton = function() {
@@ -168,25 +196,17 @@ pageDialog.prototype.getDialog = function() {
 };
 
 function AddDialog() {
-
+	this.title = "添加";
 }
 
 AddDialog.prototype = new pageDialog();
 AddDialog.prototype.constructor = "AddDialog";
 
-AddDialog.prototype.extendInfo = function() {
-	var _this = this;
-	var obj = {
-		title: '添加',
-	}
-	$.extend(_this.dialogInfo, obj);
-};
-
 AddDialog.prototype.addDialogButton = function() {
 	var _this = this;
 	this.dialogInfo.buttons = [{
 		text: '保存',
-		handler: _this.addDialogSaveButtonHandler(_this)
+		handler: _this.dialogSaveButtonHandler(_this)
 	}, {
 		text: '取消',
 		handler: function() {
@@ -195,7 +215,7 @@ AddDialog.prototype.addDialogButton = function() {
 	}];
 };
 
-AddDialog.prototype.addDialogSaveButtonHandler = function(_this) {
+AddDialog.prototype.dialogSaveButtonHandler = function(_this) {
 	var _f = function() {
 		$.messager.progress({
 				interval: 150
@@ -214,17 +234,21 @@ AddDialog.prototype.addDialogSaveButtonHandler = function(_this) {
 			},
 			success: function(data) {
 				// hide progress bar while submit successfully
-				_this.AddDialogSuccess(data);
+				_this._dialogSubmitSuccess(data);
 			}
 		});
 	}
 	return _f;
 };
 
-AddDialog.prototype.AddDialogSuccess = function(data) {
+AddDialog.prototype._dialogSubmitSuccess = function(data) {
+	$.messager.progress('close');
+	this.dialogSubmitSuccess(data);
+}
+
+AddDialog.prototype.dialogSubmitSuccess = function(data) {
 	var _this = this;
 	data = JSON.parse(data);
-	$.messager.progress('close');
 	if(data.type == "0") {
 		_this.dialog.dialog("close");
 		$.messager.alert('提示', data.message);
@@ -233,3 +257,11 @@ AddDialog.prototype.AddDialogSuccess = function(data) {
 	}
 
 }
+
+function EditDialog(){
+	this.title = "修改";
+}
+
+EditDialog.prototype = new AddDialog();
+EditDialog.prototype.constructor = "EditDialog";
+
