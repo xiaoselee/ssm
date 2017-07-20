@@ -35,6 +35,7 @@
 		<!--model-->
 		<script type="text/javascript" src="../static/model/role.js" ></script>
 		<script type="text/javascript" src="../static/model/menu.js" ></script>
+		<script type="text/javascript" src="../static/model/user.js" ></script>
 	</head>
 
 	<body>
@@ -97,7 +98,7 @@
 								</ul>
 							</li>
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="../static/assets/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="../static/assets/img/user.png" class="img-circle" alt="Avatar"> <span id="username">Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 								<ul class="dropdown-menu">
 									<li>
 										<a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a>
@@ -173,6 +174,8 @@
 		<script type="text/javascript" src="../static/js/jquery.easyui.min.js" ></script>
 		
 		<script>
+			var username = '${user.name}'
+			$('#username').html(username);
 			//遍历生成菜单树
 			$(function() {
 				$.get('../menu/getmenu', {}, function(data) {
@@ -184,12 +187,15 @@
 					}
 					$('#menutree').html(_html);
 					$('.tablink').click(function(){
-					var _link = $(this).attr('url');
-					$('.main .container-fluid').load(_link+'#contant');
+						var _link = $(this).attr('url');
+						if(_link==null || _link == "null" || _link == ""){
+							alert('没有配置链接');
+							return false;
+						}
+						$('.main .container-fluid').load(_link+'#contant');
 					
-				})
-				})
-				
+					});
+				})				
 			});
 			
 			

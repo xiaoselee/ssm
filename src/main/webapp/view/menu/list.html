@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<!--easyui-->
+		<script type="text/javascript">
+			$(function() {
+				var model = new menu();
+				model.lanch();
+			});
+		</script>
 	</head>
-
-	<script type="text/javascript">
-		$(function() {
-			var model = new menu();
-			model.lanch();
-		});
-	</script>
 
 	<body>
 
@@ -20,30 +20,72 @@
 
 			<div id="add" style="display: none;">
 				<style type="text/css">
-	
-					form table tr{
+					form table tr {
 						margin: 5px 0px;
 					}
 				</style>
 				<form id="ff" method="post">
-					<table style="margin:0 auto;">
-						<tr >
-							<td class="itemname">Name:</td>
+					<table style="margin: 0 auto;">
+						<tr>
+							<td class="itemname">标题:</td>
 							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="name" data-options="required:true"></input>
 							</td>
 						</tr>
 						<tr>
-							<td class="itemname">备注:</td>
-							<td><input  class="easyui-textbox" name="remarks" data-options="multiline:true" style="height: 60px;width: 200px;"></input>
+							<td class="itemname">链接:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="url" data-options="required:true"></input>
 							</td>
 						</tr>
-				</table>
+						<tr>
+							<td class="itemname">父id:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="pid" data-options="required:true"></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="itemname">图标:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="icon" data-options="required:true"></input>
+							</td>
+						</tr>
+					</table>
 				</form>
 
 			</div>
-				<script type="text/javascript">
-					$.parser.parse('#contant');
-				</script>
+			<div id="edit" style="display: none;">
+				<style type="text/css">
+					form table tr {
+						margin: 5px 0px;
+					}
+				</style>
+				<form id="ff" method="post">
+					<input type="hidden" value="" name="id" />
+					<table style="margin: 0 auto;">
+						<tr>
+							<td class="itemname">标题:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="name" data-options="required:true"></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="itemname">链接:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="url" data-options="required:true"></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="itemname">父id:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="pid" data-options="required:true"></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="itemname">图标:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="icon" data-options="required:true"></input>
+							</td>
+						</tr>
+					</table>
+				</form>
+
+			</div>
+			<script type="text/javascript">
+				$.parser.parse('#contant');
+			</script>
 		</div>
 
 	</body>
