@@ -7,6 +7,8 @@ import java.util.*;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+
+import cn.test.common.util.SystemConfig;
 import cn.test.po.HttpResult;
 import cn.test.po.Menu;
 import cn.test.service.ApiService;
@@ -47,7 +51,9 @@ public class IndexController {
 		Gson g = new Gson();
 		String json = g.toJson(l);
 		String port = request.getLocalPort() + "";
-
+		Session session2 = SecurityUtils.getSubject().getSession();
+		Object o = session2.getAttribute(SystemConfig.Systemname);
+		m.addObject("user",o);
 		m.addObject("json", json);
 		m.addObject("port", port);
 		m.setViewName("view/index.jsp");

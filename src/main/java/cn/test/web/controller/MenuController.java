@@ -34,11 +34,18 @@ public class MenuController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
-	public Object add(Role role) {
-		DefaultRequest<Role> d = new DefaultRequest<>();
-
+	public Object add(Menu menu) {
+		DefaultRequest<Menu> d = menuService.addMenu(menu);
 		return d;
 	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	@ResponseBody
+	public Object update(Menu menu) {
+		DefaultRequest<Menu> d = menuService.updateMenu(menu);
+		return d;
+	}
+	
 	
 
 

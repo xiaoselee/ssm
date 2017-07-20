@@ -15,4 +15,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectFromMenuByPageInfo" resultType="cn.test.po.Menu">
 		select * from menu
 	</select>
+	
+	<insert id="addMenu" useGeneratedKeys="true" keyProperty="id" parameterType="cn.test.po.Menu">
+		insert into menu(id,name,pid,icon,url)values(#{id},#{name},#{pid},#{icon},#{url})
+	</insert>
+	
+	<update id="updateMenu" parameterType="cn.test.po.Menu">
+		update menu  
+			<trim prefix="SET" suffixOverrides=",">  
+		        <if test="name != null"> name = #{name},</if>  
+		        <if test="url != null">url = #{url},</if>  
+		        <if test="icon != null">icon = #{icon},</if>
+				<if test="pid != pid">pid = #{pid},</if>    	         
+	    	</trim>  
+    	WHERE id = #{id}
+	</update>
+	
+	
+	
 </mapper>

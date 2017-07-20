@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import cn.test.common.po.DefaultRequest;
 import cn.test.common.po.PageHandler;
+import cn.test.common.po.Role;
 import cn.test.dao.IMenuDao;
 import cn.test.po.Menu;
 
@@ -56,6 +57,37 @@ public class MenuService {
 			d.setTotal(100);
 		}
 		return d;		
+	}
+
+
+	public DefaultRequest<Menu> addMenu(Menu menu) {
+		DefaultRequest<Menu> d = new DefaultRequest<>();
+		ArrayList<Menu> l = new ArrayList<>();
+		try {
+			int i = menuDao.addMenu(menu);
+			System.out.println(i);
+			l.add(menu);
+			d.setRows(l);	
+			d.setType("0");
+		} catch (Exception e) {
+			d.setType("1");
+		}
+		return d;
+	}
+
+
+	public DefaultRequest<Menu> updateMenu(Menu menu) {
+		DefaultRequest<Menu> d = new DefaultRequest<>();
+		ArrayList<Menu> l = new ArrayList<>();
+		try {
+			int i = menuDao.updateMenu(menu);
+			if(i != 0){
+				d.setType("0");
+			}
+		} catch (Exception e) {
+			d.setType("1");
+		}
+		return d;
 	}
 	
 }

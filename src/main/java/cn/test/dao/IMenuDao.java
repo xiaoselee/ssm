@@ -9,4 +9,6 @@ public interface IMenuDao {
 
 	List<Menu> selectFromMenu();
 	ArrayList<Menu> selectFromMenuByPageInfo();
+	int addMenu(Menu menu);
+	int updateMenu(Menu menu);
 }

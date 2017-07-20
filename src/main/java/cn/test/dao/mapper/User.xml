@@ -6,10 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 注意：使用mapper代理方式，namespace有特殊重要的作用
 -->
-<mapper namespace="test">
-	
-	<select id="selectFromPopLink" resultType="cn.test.po.PopLink">
-		select * from poplink
-	</select>
+<mapper namespace="cn.test.dao.IUserDao">
+	    
+    <select id="list" resultType="cn.test.po.User" parameterType="cn.test.common.po.PageHandler">
+    	select * from user limit #{limitStart},#{rows}
+    </select>
+    
+    <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="cn.test.po.User">
+    	insert into user(id,name,password)
+    	values(#{id},#{name},#{password})
+    </insert>
     
 </mapper>
