@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--easyui-->
+		<script type="text/javascript">
+			$(function() {
+				var model = new user();
+				model.lanch();
+			});
+		</script>
+	</head>
+
+	<body>
+
+		<div id="contant">
+			<table id="tt" style="width: 100%;"></table>
+
+			<div id="add" style="display: none;">
+				<style type="text/css">
+					form table tr {
+						margin: 5px 0px;
+					}
+				</style>
+				<form id="ff" method="post">
+					<table style="margin: 0 auto;">
+						<tr>
+							<td class="itemname">用户名:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="name" data-options="required:true"></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="itemname">密码:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="password" name="password" data-options="required:true"></input>
+							</td>
+						</tr>
+					</table>
+				</form>
+
+			</div>
+			<div id="edit" style="display: none;">
+				<style type="text/css">
+					form table tr {
+						margin: 5px 0px;
+					}
+				</style>
+				<form id="ff" method="post">
+					<table style="margin: 0 auto;">
+						<tr>
+							<td class="itemname">用户名:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="text" name="name" data-options="required:true"></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="itemname">密码:</td>
+							<td><input style="width: 200px;" class="easyui-textbox" type="password" name="password" data-options="required:true"></input>
+							</td>
+						</tr>
+					</table>
+				</form>
+
+			</div>
+			<script type="text/javascript">
+				$.parser.parse('#contant');
+			</script>
+		</div>
+
+	</body>
+
+</html>
