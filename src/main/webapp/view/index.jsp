@@ -136,15 +136,12 @@
 			<!-- MAIN -->
 			<div class="main">
 				<!-- MAIN CONTENT -->
-				<div class="main-content">
-					<div class="container-fluid">
-						<!-- OVERVIEW -->
-
-						<!-- END OVERVIEW -->
-						<div class="copyrights">Collect from
-							<a href="http://www.cssmoban.com/">测试界面</a>
-						</div>
+				<div class="main-content .container-fluid">
+				<div id="tt" class="easyui-tabs " style="width:98%;height:100%;">
+					<div title="首页" style="padding:20px;display:none;">
+						tab1
 					</div>
+				</div>
 				</div>
 				<!-- END MAIN CONTENT -->
 			</div>
@@ -169,9 +166,9 @@
 		<script src="../static/assets/vendor/chartist/js/chartist.min.js"></script>
 		<script src="../static/assets/scripts/klorofil-common.js"></script>
 		<script type="text/javascript" src="../static/js/main-menu.js" ></script>
-		
 		<!--easyui-->
-		<script type="text/javascript" src="../static/js/jquery.easyui.min.js" ></script>
+		<script type="text/javascript" src="../static/js/jquery.easyui.min.js" ></script>		
+
 		
 		<script>
 			var username = '${user.name}'
@@ -192,13 +189,35 @@
 							alert('没有配置链接');
 							return false;
 						}
-						$('.main .container-fluid').load(_link+'#contant');
-					
+						//$('.main .container-fluid').load(_link+'#contant');
+										var config = {
+						url: _link,
+						title: $(this).text()
+					};
+					addTabs(config);
 					});
 				})				
 			});
 			
-			
+			function addTabs(config) {
+			var b = $('#tt').tabs('exists', config.title);
+			if(b) {
+				$('#tt').tabs('select', config.title);
+				return;
+			}
+			var _content = $('<div>').load(config.url);
+			$('#tt').tabs('add', {
+				title: config.title,
+				content: _content,
+				closable: true,
+				tools: [{
+					iconCls: 'icon-mini-refresh',
+					handler: function() {
+						alert('refresh');
+					}
+				}]
+			});
+		}
 
 		</script>
 	</body>

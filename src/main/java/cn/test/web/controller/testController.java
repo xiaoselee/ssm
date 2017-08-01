@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.MultipartFilter;
+import org.springframework.web.servlet.ModelAndView;
 
 import cn.test.common.service.RedisService;
 import cn.test.util.FileUtils;
@@ -69,4 +71,11 @@ public class testController {
 		return "true";
 	}
 
+	@RequestMapping("/system/mainpage")
+	public ModelAndView toEasyuiPage(){
+		ModelAndView model = new ModelAndView();
+		model.setViewName("view/easyui/main.html");
+		return model;
+	}
+	
 }

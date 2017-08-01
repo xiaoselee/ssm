@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../static/css/easyui/themes/color.css" />
+		<link rel="stylesheet" href="../static/css/easyui/themes/icon.css" />
+		<link rel="stylesheet" href="../static/css/easyui/themes/material/easyui.css" />
+		<link rel="stylesheet" href="../static/css/main.css" />
+		<script type="text/javascript" src="../static/js/easyui/jquery.min.js"></script>
+
+		<script type="text/javascript" src="../static/common/page.js"></script>
+		<script type="text/javascript" src="../static/model/menu.js"></script>
+		<script type="text/javascript" src="../static/model/user.js"></script>
+
+		<title>主页</title>
+	</head>
+	<style type="text/css">
+
+	</style>
+
+	<body style="margin: 0;">
+		<div id="" class="easyui-layout" style="width:100%;">
+			<div data-options="region:'north'" style="height:100px">logo</div>
+			<div data-options="region:'south',split:true" style="height:30px;">2</div>
+			<!--<div data-options="region:'east',split:true" title="East" style="width:100px;">3</div>-->
+			<div data-options="region:'west',split:true" title="导航" style="width:200px;">
+				<nav>
+					<ul id="menutree" class="nav">
+
+					</ul>
+				</nav>
+			</div>
+			<div data-options="region:'center'">
+				<div id="tt" class="easyui-tabs" style="width:98%;height:100%;">
+					<div title="首页" style="padding:20px;display:none;">
+						tab1
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	
+	
+	<script type="text/javascript" src="../static/js/main-menu.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			//重置窗口高度
+			var h = $(window).height();
+			$('.easyui-layout').height(h);
+
+			$.get('../menu/getmenu', {}, function(data) {
+				var _html = '';
+				for(var i = 0; i < data.length; i++) {
+					//生成一级菜单
+					var m = data[i];
+					_html += getMenuHtml(m);
+				}
+				$('#menutree').html(_html);
+				$('.tablink').click(function() {
+					var _link = $(this).attr('url');
+					if(_link == null || _link == "null" || _link == "") {
+						alert('没有配置链接');
+						return false;
+					}
+					var config = {
+						url: _link,
+						title: $(this).text()
+					};
+					addTabs(config);
+				});
+			});			
+		});
+
+		function addTabs(config) {
+			var b = $('#tt').tabs('exists', config.title);
+			if(b) {
+				$('#tt').tabs('select', config.title);
+				return;
+			}
+			var _content = $('<div>').load(config.url);
+			$('#tt').tabs('add', {
+				title: config.title,
+				content: _content,
+				closable: true,
+				tools: [{
+					iconCls: 'icon-mini-refresh',
+					handler: function() {
+						alert('refresh');
+					}
+				}]
+			});
+		}
+	</script>
+	<script type="text/javascript" src="../static/js/easyui/jquery.easyui.min.js"></script>
+
+</html>

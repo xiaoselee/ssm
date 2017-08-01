@@ -8,7 +8,7 @@ SimplePage.prototype = new Object();
 SimplePage.prototype.constructor = "SimplePage";
 
 SimplePage.prototype.lanch = function() {
-	this.panel = $('#contant');
+	this.panel = Easy.getSelected();//$('#contant');
 	this.table = this.panel.find('#tt');
 	this.init();
 };
@@ -265,3 +265,11 @@ function EditDialog(){
 EditDialog.prototype = new AddDialog();
 EditDialog.prototype.constructor = "EditDialog";
 
+var Easy = {
+	
+}
+
+Easy.getSelected = function(){
+	var tab = $('#tt').tabs('getSelected');
+	return tab;
+}
