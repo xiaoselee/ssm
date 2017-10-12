@@ -1,25 +1,46 @@
-package cn.test.po;
+ï»¿package cn.test.core.task.entity;
 
 public class ScheduleJob {
-	 /** ÈÎÎñid **/
+	private Long id;
+	 /** ä»»åŠ¡id **/
     private String jobId;
  
-    /** ÈÎÎñÃû³Æ **/
+    /** ä»»åŠ¡åç§° **/
     private String jobName;
  
-    /** ÈÎÎñ·Ö×é **/
+    /** ä»»åŠ¡åˆ†ç»„ **/
     private String jobGroup;
  
-    /** ÈÎÎñ×´Ì¬ 0½ûÓÃ 1ÆôÓÃ 2É¾³ı**/
+    /** ä»»åŠ¡çŠ¶æ€ 0ç¦ç”¨ 1å¯ç”¨ 2åˆ é™¤**/
     private String jobStatus;
  
-    /** ÈÎÎñÔËĞĞÊ±¼ä±í´ïÊ½ **/
+    /** ä»»åŠ¡è¿è¡Œæ—¶é—´è¡¨è¾¾å¼ **/
     private String cronExpression;
  
-    /** ÈÎÎñÃèÊö **/
+    /** ä»»åŠ¡æè¿° **/
     private String desc;
+    
+    private String className;
+    
+    
 
-    public String getJobId()
+    public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getJobId()
     {
         return jobId;
     }
