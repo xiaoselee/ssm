@@ -36,6 +36,7 @@
 		<script type="text/javascript" src="../static/model/role.js" ></script>
 		<script type="text/javascript" src="../static/model/menu.js" ></script>
 		<script type="text/javascript" src="../static/model/user.js" ></script>
+		<script type="text/javascript" src="../static/model/task.js" ></script>
 	</head>
 
 	<body>
@@ -136,9 +137,9 @@
 			<!-- MAIN -->
 			<div class="main">
 				<!-- MAIN CONTENT -->
-				<div class="main-content .container-fluid">
-				<div id="tt" class="easyui-tabs " style="width:98%;height:100%;">
-					<div title="首页" style="padding:20px;display:none;">
+				<div class="main-content .container-fluid" style="padding: 5px;">
+				<div id="tt" class="" style="width:100%;">
+					<div title="首页" style="padding:20px;">
 						tab1
 					</div>
 				</div>
@@ -175,6 +176,7 @@
 			$('#username').html(username);
 			//遍历生成菜单树
 			$(function() {
+				$('#tt').tabs();
 				$.get('../menu/getmenu', {}, function(data) {
 					var _html = '';
 					for(var i = 0; i < data.length; i++) {
@@ -213,7 +215,7 @@
 				tools: [{
 					iconCls: 'icon-mini-refresh',
 					handler: function() {
-						alert('refresh');
+						console.log('refresh');
 					}
 				}]
 			});
