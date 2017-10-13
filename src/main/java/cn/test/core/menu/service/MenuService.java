@@ -1,4 +1,4 @@
-﻿package cn.test.service;
+﻿package cn.test.core.menu.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.test.common.po.DefaultRequest;
 import cn.test.common.po.PageHandler;
 import cn.test.common.po.Role;
-import cn.test.dao.IMenuDao;
+import cn.test.core.menu.dao.IMenuDao;
 import cn.test.po.Menu;
 
 @Service

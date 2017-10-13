@@ -1,4 +1,4 @@
-package cn.test.dao;
+package cn.test.core.menu.dao;
 
 import java.util.ArrayList;
 import java.util.List;

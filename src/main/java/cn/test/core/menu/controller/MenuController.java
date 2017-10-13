@@ -1,4 +1,4 @@
-package cn.test.web.controller;
+package cn.test.core.menu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +11,8 @@ import com.google.gson.Gson;
 import cn.test.common.po.DefaultRequest;
 import cn.test.common.po.PageHandler;
 import cn.test.common.po.Role;
+import cn.test.core.menu.service.MenuService;
 import cn.test.po.Menu;
-import cn.test.service.MenuService;
 import cn.test.service.RoleService;
 
 @RequestMapping("/menu")

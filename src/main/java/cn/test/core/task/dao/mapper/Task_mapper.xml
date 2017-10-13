@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- nanmespace:命名空间。 作用就是对sql进行分类话管理，理解Sal分离 注意：使用mapper代理方式，namespace有特殊重要的作用 -->
 <mapper namespace="cn.test.core.task.dao.TaskDao">
 
-	<insert id="add" parameterType="cn.test.po.ScheduleJob">
+	<insert id="add" parameterType="cn.test.core.task.entity.ScheduleJob">
 		select * from poplink
 	</insert>
 
-	<select id="selectScheduleJob" resultType="cn.test.po.ScheduleJob">
+	<select id="selectScheduleJob" resultType="cn.test.core.task.entity.ScheduleJob">
 		select * from ScheduleJob
 	</select>
 
