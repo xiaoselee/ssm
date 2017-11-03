@@ -14,6 +14,10 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
         http://www.springframework.org/schema/websocket 
         http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	<!-- 指定connector连接信息的属性文件的位置 -->
+	<context:property-placeholder location="classpath:*.properties" />
+
+	<context:annotation-config />
 
 	<context:component-scan base-package="cn.test" />
 
@@ -38,20 +42,21 @@
 	</bean>
 
 	<!-- freemarker的配置 -->
-	<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<bean id="freeMarkerConfigurer"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="preferFileSystemAccess" value="false" />
 		<property name="templateLoaderPath" value="/view/" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="freemarkerSettings">
-            <props>
-                <prop key="template_update_delay">0</prop>
-                <prop key="default_encoding">UTF-8</prop>
-                <prop key="number_format">0.##########</prop>
-                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
-                <prop key="classic_compatible">true</prop>
-                <prop key="template_exception_handler">ignore</prop>
-            </props>
-        </property>
+			<props>
+				<prop key="template_update_delay">0</prop>
+				<prop key="default_encoding">UTF-8</prop>
+				<prop key="number_format">0.##########</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="classic_compatible">true</prop>
+				<prop key="template_exception_handler">ignore</prop>
+			</props>
+		</property>
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="ctx" value="/test"></entry>
@@ -87,7 +92,8 @@
 		<bean class="cn.test.web.ws.HandshakeInterceptor" /> </websocket:handshake-interceptors> 
 		</websocket:handlers> -->
 
-	<!-- <bean id="redisHttpSessionConfiguration" class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration"> 
-		<property name="maxInactiveIntervalInSeconds" value="1800" /> </bean> -->
-
+	<!--配置文件导入 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="ignoreResourceNotFound" value="true" /> <property name="ignoreUnresolvablePlaceholders" 
+		value="true" /> <property name="locations"> <list> <value>classpath*:/redis.properties</value> 
+		<value>classpath*:/jdbc.properties</value> </list> </property> </bean> -->
 </beans>
