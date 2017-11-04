@@ -18,33 +18,33 @@ public class JavaMailTest1 {
 	
     public static void main(String[] args) throws MessagingException, GeneralSecurityException { 
     	Properties props = new Properties();
-    	// ¿ªÆôdebugµ÷ÊÔ
+    	// å¼€å¯debugè°ƒè¯•
     	props.setProperty("mail.debug", "true");
-    	// ·¢ËÍ·şÎñÆ÷ĞèÒªÉí·İÑéÖ¤
+    	// å‘é€æœåŠ¡å™¨éœ€è¦èº«ä»½éªŒè¯
     	props.setProperty("mail.smtp.auth", "true");
-    	// ÉèÖÃÓÊ¼ş·şÎñÆ÷Ö÷»úÃû
+    	// è®¾ç½®é‚®ä»¶æœåŠ¡å™¨ä¸»æœºå
     	props.setProperty("mail.host", "smtp.qq.com");
-    	// ·¢ËÍÓÊ¼şĞ­ÒéÃû³Æ
+    	// å‘é€é‚®ä»¶åè®®åç§°
     	props.setProperty("mail.transport.protocol", "smtp");
     	MailSSLSocketFactory sf = new MailSSLSocketFactory();
     	sf.setTrustAllHosts(true);
     	props.put("mail.smtp.ssl.enable", "true");
     	props.put("mail.smtp.ssl.socketFactory", sf);
     	Session session = Session.getInstance(props);
-    	//ÓÊ¼şÄÚÈİ²¿·Ö
+    	//é‚®ä»¶å†…å®¹éƒ¨åˆ†
     	Message msg = new MimeMessage(session);
-    	msg.setSubject("²âÊÔ");
+    	msg.setSubject("æµ‹è¯•");
     	StringBuilder builder = new StringBuilder();
-    	builder.append("java ÓÊ¼ş²âÊÔ");
-    	builder.append("\n  <span style=\"color: red;\">Ò»ÈºÏÌÓã</span>");
-    	builder.append("\n time£º "+new Date() );
+    	builder.append("java é‚®ä»¶æµ‹è¯•");
+    	builder.append("\n  <span style=\"color: red;\">ä¸€ç¾¤å’¸é±¼</span>");
+    	builder.append("\n timeï¼š "+new Date() );
     	msg.setText(builder.toString());
-    	//ÓÊ¼ş·¢ËÍÕß
+    	//é‚®ä»¶å‘é€è€…
     	msg.setFrom(new InternetAddress("405192400@qq.com"));
-    	//·¢ËÍÓÊ¼ş
+    	//å‘é€é‚®ä»¶
     	Transport transport = session.getTransport();
     	transport.connect("smtp.qq.com", "405192400@qq.com", "ssynybmxxckobgdd");
-    	//ÉèÖÃÊÕ¼şÈË
+    	//è®¾ç½®æ”¶ä»¶äºº
     	transport.sendMessage(msg, new Address[] { new InternetAddress("405192400@qq.com") });
     	transport.close();
     } 
