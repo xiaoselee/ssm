@@ -94,6 +94,6 @@
 
 	<!--配置文件导入 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
 		<property name="ignoreResourceNotFound" value="true" /> <property name="ignoreUnresolvablePlaceholders" 
-		value="true" /> <property name="locations"> <list> <value>classpath*:/redis.properties</value> 
-		<value>classpath*:/jdbc.properties</value> </list> </property> </bean> -->
+		value="true" /> <property name="locations"> <list> <value>classpath*:redis.properties</value> 
+		<value>classpath*:jdbc.properties</value> </list> </property> </bean> -->
 </beans>
