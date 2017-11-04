@@ -1,4 +1,4 @@
-﻿package cn.test.ws;
+package cn.test.ws;
 
 
 import java.io.IOException;

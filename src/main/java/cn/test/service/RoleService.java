@@ -1,4 +1,4 @@
-﻿package cn.test.service;
+package cn.test.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

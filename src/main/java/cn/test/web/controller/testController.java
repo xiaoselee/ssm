@@ -1,4 +1,4 @@
-﻿package cn.test.web.controller;
+package cn.test.web.controller;
 
 import java.io.File;
 import java.io.IOException;

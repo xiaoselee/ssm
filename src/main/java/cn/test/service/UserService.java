@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.test.common.po.DefaultRequest;
 import cn.test.common.po.PageHandler;
 import cn.test.common.po.Role;
-import cn.test.dao.IMenuDao;
+import cn.test.core.menu.dao.IMenuDao;
 import cn.test.dao.IUserDao;
 import cn.test.po.Menu;
 import cn.test.po.User;

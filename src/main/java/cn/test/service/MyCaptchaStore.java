@@ -1,4 +1,4 @@
-﻿package cn.test.service;
+package cn.test.service;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -33,8 +33,10 @@ public class MyCaptchaStore implements CaptchaStore {
 		 */
 		CaptchaAndLocale captchaAndLocale = null;
 		try {
-			byte[] b = (byte[]) redis.opsForValue().get(key);
-			captchaAndLocale = (CaptchaAndLocale) SerializationUtil.deserialize(b);
+			//byte[] b = (byte[]) redis.opsForValue().get(key);
+			Object o = redis.opsForValue().get(key);
+			captchaAndLocale = (CaptchaAndLocale) o;
+					
 			return captchaAndLocale != null ? (captchaAndLocale.getCaptcha()) : null;
 		} catch (Exception e) {
 			System.err.println("getCaptcha 错误：" + e.getMessage());
@@ -48,8 +50,8 @@ public class MyCaptchaStore implements CaptchaStore {
 		// TODO Auto-generated method stub
 		CaptchaAndLocale captchaAndLocale = null;
 		try {
-			byte[] b = (byte[]) redis.opsForValue().get(arg0);
-			captchaAndLocale = (CaptchaAndLocale) SerializationUtil.deserialize(b);
+			//byte[] b = (byte[]) redis.opsForValue().get(arg0);
+			captchaAndLocale = (CaptchaAndLocale) redis.opsForValue().get(arg0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,8 +73,8 @@ public class MyCaptchaStore implements CaptchaStore {
 	public boolean hasCaptcha(String id) {
 		// TODO Auto-generated method stub
 		try {
-			byte[] b = (byte[]) redis.opsForValue().get(id);
-			CaptchaAndLocale captcha = (CaptchaAndLocale) SerializationUtil.deserialize(b);
+			//byte[] b = (byte[]) redis.opsForValue().get(id);
+			CaptchaAndLocale captcha = (CaptchaAndLocale) redis.opsForValue().get(id);
 			return captcha == null ? false : true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,8 +111,8 @@ public class MyCaptchaStore implements CaptchaStore {
 			Gson g = new Gson();
 			String _s = g.toJson(captchaAndLocale, CaptchaAndLocale.class);
 			System.out.println("生成captcha2：" + _s);
-			byte[] b = SerializationUtil.serialize(captchaAndLocale);
-			redis.opsForValue().set(id, b);
+			//byte[] b = SerializationUtil.serialize(captchaAndLocale);
+			redis.opsForValue().set(id, captchaAndLocale);
 			System.out.println("保存到redis。2");
 		} catch (Exception e) {
 			e.printStackTrace();

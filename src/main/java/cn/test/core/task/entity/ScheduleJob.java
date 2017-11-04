@@ -1,4 +1,4 @@
-﻿package cn.test.core.task.entity;
+package cn.test.core.task.entity;
 
 public class ScheduleJob {
 	private Long id;

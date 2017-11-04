@@ -1,13 +1,14 @@
 package cn.test.common.po;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DefaultRequest<T>  {
 
 	private String type;
 	private String message;
 	private int total;
-	private ArrayList<T> rows;
+	private List<T> rows;
 	
 	
 	
@@ -29,10 +30,10 @@ public class DefaultRequest<T>  {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	public ArrayList<T> getRows() {
+	public List<T> getRows() {
 		return rows;
 	}
-	public void setRows(ArrayList<T> rows) {
+	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
 	

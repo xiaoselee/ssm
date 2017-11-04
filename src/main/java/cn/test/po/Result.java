@@ -3,31 +3,22 @@ package cn.test.po;
 import java.io.Serializable;
 
 /**
- * 通用实体类
+ * 通锟斤拷实锟斤拷锟斤拷
  * 
  * @param <T>
  */
 public class Result<T> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 状态，默认是失败=false
-	 */
+
 	private boolean status = false;
 
-	/**
-	 * 错误码，默认是失败=99，成功=0
-	 */
-	private int errCode = 99;
+	int errCode = 99;
 
-	/**
-	 * 错误信息
-	 */
+
 	private String errMsg = "";
 
-	/**
-	 * 返回结果实体
-	 */
+
 	private T resultData;
 
 	public boolean isStatus() {

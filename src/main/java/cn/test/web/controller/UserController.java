@@ -11,9 +11,9 @@ import com.google.gson.Gson;
 import cn.test.common.po.DefaultRequest;
 import cn.test.common.po.PageHandler;
 import cn.test.common.po.Role;
+import cn.test.core.menu.service.MenuService;
 import cn.test.po.Menu;
 import cn.test.po.User;
-import cn.test.service.MenuService;
 import cn.test.service.RoleService;
 import cn.test.service.UserService;
 

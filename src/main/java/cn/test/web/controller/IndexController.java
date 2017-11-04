@@ -18,11 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import cn.test.common.util.SystemConfig;
+import cn.test.core.menu.service.MenuService;
 import cn.test.po.HttpResult;
 import cn.test.po.Menu;
 import cn.test.service.ApiService;
 import cn.test.service.ITestService;
-import cn.test.service.MenuService;
 import cn.test.util.RedisUtil;
 
 @Controller

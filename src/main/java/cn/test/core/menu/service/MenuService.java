@@ -1,4 +1,4 @@
-﻿package cn.test.core.menu.service;
+package cn.test.core.menu.service;
 
 import java.util.ArrayList;
 import java.util.List;

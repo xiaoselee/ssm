@@ -1,4 +1,4 @@
-﻿package cn.test.service;
+package cn.test.service;
 
 import java.io.IOException;
 

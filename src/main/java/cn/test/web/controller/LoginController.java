@@ -1,4 +1,4 @@
-﻿package cn.test.web.controller;
+package cn.test.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +9,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +27,8 @@ import cn.test.po.User;
 @Controller
 public class LoginController extends BaseController {
 
-	@Autowired
-	private ImageCaptchaService imageCaptchaService;
+	/*@Autowired
+	private ImageCaptchaService imageCaptchaService;*/
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView toRoot(HttpSession session) {
@@ -51,6 +52,9 @@ public class LoginController extends BaseController {
 		return new ModelAndView(_url);
 	}
 
+	@Autowired
+	private RedisTemplate<String, Object> redis;
+	
 	@RequestMapping(value = "/security/login", method = RequestMethod.POST)
 	@ResponseBody
 	public Object Login(HttpServletRequest request, User user, HttpSession session, String captcha) {
@@ -61,7 +65,11 @@ public class LoginController extends BaseController {
 		System.out.println("id: "+request.getSession().getId());
 		String captchaId = (String) session.getAttribute("captchaId");
 		try {
-			isResponseCorrect = imageCaptchaService.validateResponseForID(captchaId, captcha);
+			String code = (String) redis.opsForValue().get(captchaId);
+			if(code.equalsIgnoreCase(captcha)){
+				isResponseCorrect = true;
+			}
+			//isResponseCorrect = imageCaptchaService.validateResponseForID(captchaId, captcha);
 		} catch (Exception e) {
 			re.setStatus(false);
 			re.setErrMsg("二维码已过期");

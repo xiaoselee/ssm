@@ -1,4 +1,4 @@
-﻿package cn.test.util;
+package cn.test.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

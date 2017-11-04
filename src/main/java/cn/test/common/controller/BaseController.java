@@ -2,8 +2,12 @@ package cn.test.common.controller;
 
 import java.text.MessageFormat;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class BaseController {
 	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -20,6 +24,30 @@ public class BaseController {
 	public static final String UPDATE = "update";
 	public static final String DELETE = "delete";
 	public static final String PAGE = "page";
+	
+	@Autowired
+	private HttpServletRequest request;
+	@Autowired
+	private HttpServletResponse response;
+	
+	
+	
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
 
 	public static String redirect(String format, Object... arguments) {
 		return new StringBuffer("redirect:").append(MessageFormat.format(format, arguments)).toString();

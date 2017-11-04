@@ -1,4 +1,4 @@
-﻿package cn.test.util;
+package cn.test.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +22,8 @@ public class SerializationUtil {
             byte[] bytes = baos.toByteArray();
             return bytes;
         } catch (Exception e) {
+        	System.out.println("序列化对象异常");
+        	e.printStackTrace();
         }
         return null;
     }
