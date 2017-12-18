@@ -85,10 +85,10 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-core -->
 		<dependency>
-		    <groupId>com.dyuproject.protostuff</groupId>
-		    <artifactId>protostuff-core</artifactId>
-		    <version>1.1.3</version>
-		    <scope>test</scope>
+			<groupId>com.dyuproject.protostuff</groupId>
+			<artifactId>protostuff-core</artifactId>
+			<version>1.1.3</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.dyuproject.protostuff/protostuff-api -->
@@ -126,21 +126,11 @@
 			<version>0.9.1.2</version>
 		</dependency>
 
-<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-<dependency>
-    <groupId>com.oracle</groupId>
-    <artifactId>ojdbc6</artifactId>
-    <version>12.1.0.1-atlassian-hosted</version>
-    <scope>test</scope>
-</dependency>
-<!-- 
-		<dependency>
-			<groupId>cn.easyproject</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>12.1.0.2.0</version>
-		</dependency>
-
-		jstl需要的jar包 -->
+		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 <dependency> 
+			<groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> <version>12.1.0.1-atlassian-hosted</version> 
+			<scope>test</scope> </dependency> -->
+		<!-- <dependency> <groupId>cn.easyproject</groupId> <artifactId>ojdbc6</artifactId> 
+			<version>12.1.0.2.0</version> </dependency> jstl需要的jar包 -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
@@ -393,17 +383,17 @@
 		<!-- 定时任务 -->
 		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
 		<dependency>
-		    <groupId>org.quartz-scheduler</groupId>
-		    <artifactId>quartz</artifactId>
-		    <version>2.3.0</version>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.0</version>
 		</dependency>
-		
-		
+
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
 		<dependency>
-		    <groupId>org.mybatis.generator</groupId>
-		    <artifactId>mybatis-generator-core</artifactId>
-		    <version>1.3.5</version>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>1.3.5</version>
 		</dependency>
 
 	</dependencies>
@@ -456,5 +446,17 @@
 					</includes> <filtering>true</filtering> -->
 			</resource>
 		</resources>
+
 	</build>
+
+	<repository>
+		<!-- 直接添加一个 repository 即可 -->
+		<id>repo1</id>
+		<name>org.maven.repo1</name>
+		<layout>default</layout>
+		<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		<snapshots>
+			<enabled>false</enabled>
+		</snapshots>
+	</repository>
 </project>
